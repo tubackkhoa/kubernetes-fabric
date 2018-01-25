@@ -12,7 +12,6 @@ spec:
   containers:
   - name: chaincodeinstall
     image: hyperledger/fabric-tools:x86_64-1.0.2
-    imagePullPolicy: Always
     command: ["sh", "-c", "git clone -b v1.0.3 https://github.com/hyperledger/fabric $GOPATH/src/github.com/hyperledger/fabric/ && peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02/"]
     env:
     - name: CHAINCODE_NAME

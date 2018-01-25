@@ -16,7 +16,6 @@ spec:
   containers:
   - name: wipeshared
     image: hyperledger/fabric-tools:x86_64-1.0.2
-    imagePullPolicy: Always
     command: ["sh", "-c", "rm -rf /shared/* /home/*"]
     volumeMounts:
     - name: composer-card-store

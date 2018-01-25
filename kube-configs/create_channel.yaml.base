@@ -12,7 +12,6 @@ spec:
   containers:
   - name: createchanneltx
     image: hyperledger/fabric-tools:x86_64-1.0.2
-    imagePullPolicy: Always
     command: ["sh", "-c", "cd /shared && pwd && ls && configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ${CHANNEL_NAME}.tx -channelID ${CHANNEL_NAME} && touch /shared/status_channeltx_complete "]
     env:
     - name: CHANNEL_NAME
@@ -27,7 +26,6 @@ spec:
 
   - name: createchannel
     image: hyperledger/fabric-peer:x86_64-1.0.2
-    imagePullPolicy: Always
     command: ["sh", "-c", "while [ ! -f /shared/status_channeltx_complete ]; do echo Waiting for channeltx; sleep 2; done; peer channel create -o ${ORDERER_URL} -c ${CHANNEL_NAME} -f /shared/${CHANNEL_NAME}.tx && rm /shared/status_channeltx_complete && touch /shared/status_channelcreate_complete"]
     env:
     - name: CHANNEL_NAME
